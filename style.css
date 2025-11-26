@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: 'Caveat', cursive;
+    font-family: 'Dancing Script', cursive;
     background: linear-gradient(135deg, #FFF7F0 0%, #F0FAFF 100%);
     min-height: 100vh;
     display: flex;
@@ -310,7 +310,7 @@ body {
 }
 
 h1 {
-    font-family: 'Dancing Script';
+    font-family: 'Dancing Script', cursive;
     color: var(--uit-blue);
     font-size: 20px;
     margin-bottom: 5px;
@@ -318,7 +318,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Dancing Script';
+    font-family: 'Dancing Script', cursive;
     font-size: 18px;
     margin: 5px 0;
     line-height: 1.2;
