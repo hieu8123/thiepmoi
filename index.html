@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Mời Lễ Tốt Nghiệp - Lê Công Hiếu</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="confetti-container" id="confetti"></div>
+
+    <div class="container">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+
+            <!-- Layer 1: Back -->
+            <div class="envelope-back"></div>
+
+            <!-- Layer 2: Letter -->
+            <div class="letter" id="letter">
+                <div class="letter-paper">
+                    <button class="close-btn" id="closeBtn">×</button>
+                    <img src="https://www.uit.edu.vn/sites/vi/files/banner_uit.png" alt="UIT" class="uit-logo">
+                    <h1>Thiệp Mời Lễ Tốt Nghiệp</h1>
+                    <div class="photo-section">
+                        <img src="public/21522070_2251.jpg" alt="Lê Công Hiếu"
+                            style="width:80px;height:80px;border-radius:50%;border:3px solid #4A5FC1;object-fit:cover;"
+                            onerror="this.src='https://via.placeholder.com/80/4A5FC1/fff?text=LCH'">
+                    </div>
+                    <h2>Lê Công Hiếu</h2>
+                    <p>Khoa Khoa học & Kỹ thuật Thông tin</p>
+                    <p class="highlight">Trân trọng kính mời các bạn đến tham dự Lễ Tốt Nghiệp! 🎓</p>
+                    <div class="event-details">
+                        <p>📅 27/11/2025</p>
+                        <p>⏰ 10:30 sáng</p>
+                        <p>📍 Hội trường A, UIT</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layer 3: Front Pocket -->
+            <div class="envelope-pocket"></div>
+
+            <!-- Layer 4: Flap -->
+            <div class="envelope-flap" id="flap">
+                <div class="envelope-seal" id="sealButton">
+                    <span class="seal-icon">🎓</span>
+                    <span class="seal-text">Mở thư</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

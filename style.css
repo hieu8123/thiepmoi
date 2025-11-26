@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --uit-blue: #4A5FC1;
+    --gold: #FFD700;
+    --gold-dark: #DAA520;
+    --env-width: min(80vw, 600px);
+    --env-height: min(55vw, 420px);
+}
+
+body {
+    font-family: 'Caveat', cursive;
+    background: linear-gradient(135deg, #FFF7F0 0%, #F0FAFF 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(74, 95, 193, 0.2);
+    border-radius: 50%;
+    animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(0);
+        opacity: 0;
+    }
+}
+
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    animation: confetti-fall 4s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: var(--env-width);
+    height: var(--env-height);
+    margin-top: 100px;
+}
+
+/* Envelope Back - Layer 1 */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    text-align: center;
+}
+
+/* Letter - Layer 2 */
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 85%;
+    left: 5%;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+    transform-origin: 50% 50%;
+}
+
+.letter-paper {
+    width: 100%;
+    height: 100%;
+    background: #FFF;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.letter-paper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.letter-paper::-webkit-scrollbar-thumb {
+    background: #4A5FC1;
+    border-radius: 2px;
+}
+
+/* Animation States */
+.letter.fly-up {
+    animation: flyUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+}
+
+.letter.fly-down {
+    animation: flyDown 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+}
+
+.letter.on-top {
+    z-index: 100 !important;
+}
+
+.letter.settle {
+    animation: settle 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: auto;
+}
+
+/* Keyframes */
+@keyframes flyUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-150%) scale(0.8);
+        opacity: 1;
+    }
+}
+
+@keyframes flyDown {
+    0% {
+        transform: translateY(-150%) scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes settle {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+/* Envelope Front - Layer 3 */
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Redefine Front Pocket correctly */
+.envelope-pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.envelope-pocket::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #E8D4A0 0%, #D4B574 100%);
+    border-radius: 12px;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 50%, 0 0);
+}
+
+/* Flap - Layer 4 */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    transform-origin: top;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.envelope-flap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: #C9A961;
+    border-radius: 12px 12px 0 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.envelope-flap.open {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+/* Seal Button - Fixed Style */
+.envelope-seal {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(0deg);
+    width: 60px;
+    height: 60px;
+    background: var(--uit-blue);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    transition: transform 0.2s;
+    border: 2px solid #FFF;
+}
+
+.envelope-seal:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(74, 95, 193, 0.6);
+}
+
+.seal-icon {
+    font-size: 20px;
+    color: #FFF;
+}
+
+.seal-text {
+    font-weight: bold;
+    color: #FFD700;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+/* Content Typography */
+.uit-logo {
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-family: 'Dancing Script';
+    color: var(--uit-blue);
+    font-size: 20px;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-family: 'Dancing Script';
+    font-size: 18px;
+    margin: 5px 0;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.highlight {
+    color: var(--uit-blue);
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: var(--uit-blue);
+    cursor: pointer;
+}
+
+.photo-section {
+    margin: 8px 0;
+}
+
+.event-details {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(74, 95, 193, 0.05);
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --env-width: 90vw;
+        --env-height: 60vw;
+    }
+
+    .envelope-seal {
+        top: 25%;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
